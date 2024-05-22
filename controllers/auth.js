@@ -110,6 +110,9 @@ exports.signin = catchAsyncError(async (req, res, next) => {
   const Model = (role === "employee") ? User : Employer;
 
   const user = await Model.findOne({ mobile: phone });
+  if (!user) {
+    return next(new ErrorHandler("User does not exist", 400));
+  }
   const isPasswordMatch = await user.authenticate(password);
   if (!user || !isPasswordMatch) {
     return next(new ErrorHandler("Invalid user or password", 400));
