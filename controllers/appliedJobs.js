@@ -91,7 +91,7 @@ exports.getCreatedJobs = catchAsyncError(async (req, res, next) => {
 });
 
 exports.getUserListAppliedJob = catchAsyncError(async (req, res, next) => {
-  const { jobId } = req.body;
+  const { jobID } = req.params;
 
   if (!jobId) {
     return next(new ErrorHandler("jobID is not available", 400));

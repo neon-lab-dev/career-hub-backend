@@ -23,7 +23,7 @@ Router.get(
   getCreatedJobs
 );
 Router.get(
-  "/getUserListAppliedJob",
+  "/getUserListAppliedJob/:jobID",
   requireSignin,
   employerMiddleware,
   getUserListAppliedJob
