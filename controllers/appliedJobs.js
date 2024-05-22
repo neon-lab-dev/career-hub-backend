@@ -93,12 +93,12 @@ exports.getCreatedJobs = catchAsyncError(async (req, res, next) => {
 exports.getUserListAppliedJob = catchAsyncError(async (req, res, next) => {
   const { jobID } = req.params;
 
-  if (!jobId) {
+  if (!jobID) {
     return next(new ErrorHandler("jobID is not available", 400));
   }
 
   const jobs = await appliedJobs
-    .find({ applied: { $elemMatch: { job: jobId } } }, { user: 1 })
+    .find({ applied: { $elemMatch: { job: jobID } } }, { user: 1 })
     .populate("user")
     .lean();
 
