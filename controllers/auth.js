@@ -131,12 +131,12 @@ exports.ChangePassword = catchAsyncError(async (req, res, next) => {
   const user = await Model.findOne({ mobile: phone });
 
   if (!user) {
-    return next(ErrorHandler("Invalid user", 400));
+    return next(new ErrorHandler("Invalid user", 400));
   }
 
   const isOldPasswordValid = await user.authenticate(oldPassword);
   if (!isOldPasswordValid) {
-    return next(ErrorHandler("Invalid password", 400));
+    return next(new ErrorHandler("Invalid password", 400));
   }
 
   user.hash_password = newPassword;
